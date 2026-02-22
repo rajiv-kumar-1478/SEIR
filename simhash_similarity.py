@@ -25,10 +25,11 @@ def countWordFreq(response):
     freqDict={}
     words=response.lower().split()
     for word in words:
-        if word in freqDict:
-            freqDict[word]+=1
-        else:
-            freqDict[word]=1
+        if len(word)>3:
+            if word in freqDict:
+                freqDict[word]+=1
+            else:
+                freqDict[word]=1
     return freqDict
 
 
@@ -86,4 +87,5 @@ if __name__=="__main__":
     else:
 
         print("Failed to fetch data")
+
 
