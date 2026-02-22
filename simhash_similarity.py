@@ -70,7 +70,7 @@ def commonBit(simhash1,simhash2):
 
 if __name__=="__main__":
     if(len(sys.argv) != 3):
-        print("Usage: python crawler.py <url1> <url2>")
+        print("Usage: python simhash_similarity.py <url1> <url2>")
         sys.exit(1)
     url1=sys.argv[1]
     url2=sys.argv[2]
@@ -84,4 +84,5 @@ if __name__=="__main__":
         common_bits=commonBit(simhash1,simhash2)
         print(f"Common bits: {common_bits}")
     else:
+
         print("Failed to fetch data")
