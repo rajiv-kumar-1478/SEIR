@@ -8,7 +8,7 @@ def crawl(url):
         'User-Agent': 'Mozilla/5.0',
     }
     try:
-        response = re.get(url,timeout=(5,20),headers=header)
+        response = re.get(url,headers=header)
         if response.status_code==200:
             return response.text
         else:
@@ -26,33 +26,32 @@ def parse(html,url):
         title=title.text.strip()
         print(title)
 
-    
-    body=soup.find('body')
+    body = soup.find('body')
     if body:
-        body=body.get_text(separator=" ",strip=True)
-        body=" ".join(body.split())
+        body=body.get_text(separator=" ", strip =True)
         # print(type(body))
         print(body)
 
     anchors=soup.find_all('a')
-    links=[]
+    
     for anchor in anchors:
         href=anchor.get('href')
         if href and (href.startswith('http') or href.startswith('https')):
-            links.append(href)
+            print(href)
         if href and href.startswith('/'):
-            links.append(url+href)
-    print(" ".join(links))
+            href=url+href
+            print(href)
     
         
 if __name__=="__main__":
     if (len(sys.argv))<2:
-        print("Usage python crawler.py <url>")
+        print("Usage: python scraper.py <url>")
         sys.exit(1)
         
     url=sys.argv[1]
     html=crawl(url)
     if html:
         parse(html,url)
+
 
 
