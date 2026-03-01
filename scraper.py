@@ -48,10 +48,14 @@ if __name__=="__main__":
         print("Usage: python scraper.py <url>")
         sys.exit(1)
         
-    url=sys.argv[1]
+    url = sys.argv[1]
+
+    if not url.startswith("http://") and not url.startswith("https://"):
+        url = "https://" + url
     html=crawl(url)
     if html:
         parse(html,url)
+
 
 
 
